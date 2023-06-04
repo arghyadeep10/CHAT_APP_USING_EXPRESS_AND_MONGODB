@@ -1,0 +1,58 @@
+<div class="container">
+  <main class="form-signin w-100 m-auto">
+      <form action="/new_user_registration_request", method="post">
+        <!-- We add an extra input field that helps with csrf authentication -->
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        
+        <h1 class="h3 mb-3 fw-normal">Register Today</h1>
+
+        <style>
+          .form-floating{
+            margin-top: 5px;
+          }
+        </style>
+
+        <% if(register_error_message != null){ %>
+          <div class="alert alert-danger" role="alert">
+            <%=register_error_message%>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%=user_data.email%>">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" value="<%=user_data.name%>">
+            <label for="floatingInput">Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="username" name="username" placeholder="johndoe_1234" value="<%=user_data.username%>">
+            <label for="floatingInput">Username</label>
+          </div>
+        <% } else { %>
+          <div class="form-floating">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe">
+            <label for="floatingInput">Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="username" name="username" placeholder="johndoe_1234">
+            <label for="floatingInput">Username</label>
+          </div>
+        <% } %>
+        
+        <div class="form-floating">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Password">
+          <label for="floatingPassword">Confirm Password</label>
+        </div>
+    
+        <input class="w-100 btn btn-lg btn-primary" type="submit">
+      </form>
+    </main>
+</div>

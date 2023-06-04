@@ -1,0 +1,40 @@
+<div class="container">
+    <main class="form-signin w-100 m-auto">
+        
+          <h1 class="h3 mb-3 fw-normal">Profile</h1>
+  
+          <style>
+            .form-floating{
+              margin-top: 5px;
+              margin-bottom: 5px;
+            }
+            .edit_btn{
+              margin-top: 8px;
+              margin-bottom: 8px;
+            }
+          </style>
+
+        <% if(password_changed_successfull != null){ %>
+          <div class="alert alert-success" role="alert">
+            Password changed successfully
+          </div>
+          <% } %>
+  
+        <div class="form-floating">
+          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" value="<%=user_data.email%>", disabled="disabled">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" value="<%=user_data.name%>", disabled="disabled">
+          <label for="floatingInput">Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" id="username" name="username" placeholder="johndoe_1234" value="<%=user_data.username%>", disabled="disabled">
+          <label for="floatingInput">Username</label>
+        </div>
+
+        <a href="/edit_profile" class="w-100 btn btn-lg btn-primary edit_btn">Edit Profile</a>
+        <a href="/change_password" class="w-100 btn btn-lg btn-outline-danger change_password_btn">Change Password</a>
+
+      </main>
+  </div>

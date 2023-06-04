@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('css_insertion.ejs') -%>
+    <%- include('bootstrap_insertion.ejs') -%>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <link rel="stylesheet" href="/css/chat_styles.css">
+    <title>Chat Room</title>
+</head>
+<body>
+    <%- include('bootstrap_example_header_styling_insertion.ejs') -%>
+    <%- include('example_bootstrap_header_insertion_logged_in.ejs') -%>
+
+    <div id="dev-chat">
+        <h3 style="margin-left: 15px; margin-top: 12px;">Community Chat Room</h3>
+        <div id="chat-window">
+            <div id="output">
+                <%for (const message of messages) {%>
+                    <p><strong><%=message.username%>: </strong><%=message.message%>
+                    <%if(message.sendFileName != undefined && message.sendFileName != null){%>
+                        <a target="_blank" style="margin-left: 10px;" href="/assets?fname=<%=message.sendFileName%>" type="button" class="btn btn-outline-success me-2">View File</a>
+                    <%}%>
+                    </p>
+                <%}%>
+            </div>
+            <div id="feedback"></div>
+        </div>
+
+        <input id="handle" type="hidden" placeholder="Handle" value="<%=handleValue%>">
+        <input id="message" type="text" class="form-control" placeholder="Message">
+        <button type="button" class="btn btn-primary" id="send">Send Message</button>
+        <form action="/upload_file_unicast_chat_room", method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file_upload_alpha">Upload Attachment</label>
+                <input type="file" class="form-control-file" name="file_upload_alpha">
+                <input class="w-100 btn btn-lg btn-primary" type="submit" value="Upload File">
+                <%if(canSendFile == true){%>
+                    <label for="uploaded_file_beta">File Uploaded</label>
+                    <input id="uploaded_file_beta_id" type="text" class="form-control" placeholder="File Uploaded" name="uploaded_file_beta" value="<%=fileUploadedName%>">
+                    <button type="button" class="btn btn-dark" id="send_uploaded_file">Send File</button>
+                <%}else{%>
+                    <input id="uploaded_file_beta_id" type="hidden" class="form-control" placeholder="File Uploaded" name="uploaded_file_beta" value="noValue">
+                    <button type="button" class="btn btn-dark" id="send_uploaded_file" disabled>Send File</button>
+                <%}%>
+            </div>
+        </form>
+        
+    </div>
+
+
+    <script src="/js/chat_room.js"></script>
+</body>
+</html>

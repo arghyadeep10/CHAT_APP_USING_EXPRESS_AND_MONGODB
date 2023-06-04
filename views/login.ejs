@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('css_insertion') -%>
+    <%- include('bootstrap_insertion.ejs') -%>
+    <%- include('bootstrap_example_header_styling_insertion.ejs') -%>
+    <%- include('bootstrap_example_signin_styling_insertion.ejs') -%>
+
+    <title>Login</title>
+</head>
+<body>
+    <%- include('example_bootstrap_header_insertion_not_logged_in') -%>
+    
+    <%- include('example_bootstrap_signin_for_signin_page') -%>
+
+    <div class="alert alert-secondary" role="alert">
+        If you don't have an account <a href="/register" class="link-dark">Sign Up</a>
+    </div>
+
+</body>
+</html>
